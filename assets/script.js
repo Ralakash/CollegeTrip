@@ -6,8 +6,10 @@ var schoolinfo;
 var weather1;
 var city = "kalamazoo";
 
-saveBtn.on('click', function () {
+saveBtn.on('click', function (event) {
     // debugger;
+    event.preventDefault();
+
  collegeName = $("#collegeName").val();
  collegescorecard();
 })
@@ -30,6 +32,15 @@ fetch("https://api.data.gov/ed/collegescorecard/v1/schools?school.name=" + colle
             
         }
     }
+
+}
+
+const createSchoolCard = (i) => {
+    $("#container").append('<div class="card" style="width: 18rem;" id="card'+i+'"></div>');
+    $("#container").append('')
+    $("#container").append('')
+    $("#container").append('')
+    $("#container").append('')
 
 }
 
