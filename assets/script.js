@@ -5,6 +5,7 @@ $("#saveBtn").on('click', async function (event) {
     let collegeName = $("#collegeName").val();
     const dataInfo = await collegeScoreCard(collegeName);
     schoolCard(dataInfo.results);
+
 })
 
 const collegeScoreCard = (collegeName) =>{
@@ -17,6 +18,7 @@ const weather = (city) => {
     return fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + openweathermapKey +"&units=imperial")
     .then(res => res.json())
 }
+
 
 const schoolCard = async (resultsInfo) => {
     for (let i = 0; i < resultsInfo.length; i++) {
