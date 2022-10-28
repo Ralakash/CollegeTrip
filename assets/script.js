@@ -1,4 +1,5 @@
 
+var savedColleges = [];
 $("#saveBtn").on('click', async function (event) {
     event.preventDefault();
     $("#containerEL").empty;
@@ -32,9 +33,27 @@ const schoolCard = async (resultsInfo) => {
             .then(weatherData => {
                 let weather1;
                 weather1 = weatherData.list[4].main.temp;
-                $("#containerEL").append('<div class="card" id="card' + i + '"></div>');
+                $("#containerEL").append('<div class="card col-9" id="card' + i + '"></div>');
                 $(cardID[i]).append('<div class="card-body" id="card-body' + i + '"></div>');
                 $(cardBodyID[i]).text("College name: " + schoolInfo.name + ", City: " + schoolInfo.city + ", School URL: " + schoolInfo.school_url + ", Temperature(F): " +weather1);
+                let button = $('<button type="button" class="btn btn-info col-2" id=saveButton' + i + '>Save</button>')
+                $("#containerEL").append(button);
+                $(button).click(function(event){
+                    let info = $(cardBodyID[i]).text();
+                    savedColleges.push(info);
+                    localStorage.setItem('colleges', savedColleges);
+                    console.log(savedColleges);
+                })
             });
     }
 }
+console.log($(".btn-info"));
+$(".btn-info").click(function(event) {
+    var id = $(event.target).attr("id");
+    const a = "saveButton";
+    var arrayPoint = id.replace(a, "");
+    let info = $(cardBodyID[arrayPoint]).text() + '|';
+    savedColleges.push(info);
+    localStorage.setItem('colleges', savedColleges);
+    console.log(savedColleges);
+})
