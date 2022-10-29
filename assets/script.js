@@ -38,7 +38,8 @@ const schoolCard = async (resultsInfo) => {
       let weather1;
       weather1 = weatherData.list[4].main.temp;
       // SAM 2: you can also edit these classes on line 41 and 42 to edit to get the buttons in line.
-      $('#containerEL').append('<div class="card col-9" id="card' + i + '"></div>');
+      // I added style="margin : 0.5rem 0rem;" to now line 42 to give space on top and bottom of the cards, will be doing the same to the buttons. - Sam
+      $('#containerEL').append('<div class="card col-9" style="margin : 0.5rem 0rem;" id="card' + i + '"></div>');
       $(cardID[i]).append('<div class="card-body" id="card-body' + i + '"></div>');
       $(cardBodyID[i]).text(
         'College name: ' +
@@ -52,7 +53,8 @@ const schoolCard = async (resultsInfo) => {
       );
       // creates a button element that is used to save data to local storage.
       // SAM 1: please figure out how to get this element in line with the card element you can edit the classes inside of line 54 using bootstrap and CSS to do so.
-      let button = $('<button type="button" class="btn btn-info col-2" id=saveButton' + i + '>Save</button>');
+      // style="margin : 0.5rem 0rem;" also added to now line 57, 
+      let button = $('<button type="button" class="btn btn-info col-2" style="margin : 0.5rem 0rem;" id=saveButton' + i + '>Save</button>');
       $('#containerEL').append(button);
 
       // creates a sidebar that lists saved colleges.
