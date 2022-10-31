@@ -43,9 +43,9 @@ const schoolCard = async (resultsInfo) => {
       let weather1;
       weather1 = weatherData.list[4].main.temp;
       // SAM 2: you can also edit these classes on line 41 and 42 to edit to get the buttons in line.
-      // I added style="margin : 0.5rem 0rem;" to now line 42 to give space on top and bottom of the cards, will be doing the same to the buttons. - Sam
+      // changed style="margin : 0.5rem 0rem;" to mt-2 to follow bootstrap formatting - Sam
       $('#containerEL').append(
-        '<div class="card col-8 row container-fluid d-flex flex-row" style="margin : 0.5rem 0rem;" id="card' +
+        '<div class="card col-8 row container-fluid d-flex flex-row mt-2" id="card' +
           i +
           '"></div>'
       );
@@ -63,7 +63,7 @@ const schoolCard = async (resultsInfo) => {
       );
       // creates a button element that is used to save data to local storage.
       let button = $(
-        '<button type="button" class="btn btn-secondary col-2" style="margin : 0.5rem 0rem;" id=saveButton' +
+        '<button type="button" class="btn btn-secondary col-2 my-2" id=saveButton' +
           i +
           '>Save</button>'
       );
@@ -106,9 +106,9 @@ const writeToSave = () => {
     savedBodyID[i] = '#saved-body' + i;
     // SAM or ERIC: Please work on using the classes and bootstrap 5 to get the cards here to look better. I will rearrange what data is being fed into them later
     //              so just focus on ensuring whatever data inside of them is able to be seen appropriately.
-    $('#sideBar').append('<div class="card col-9 row" style="margin : 0.5rem 0rem;" id="saved' + i + '"></div>');
+    $('#sideBar').append('<div class="card col-9 row mb-2"  id="saved' + i + '"></div>');
     let closeBtn = $(
-      '<button type="button" class="btn btn-outline-danger btn-sm col-2" id="close' + i + '">X</button>'
+      '<button type="button" class="btn btn-outline-danger btn-sm col-2 align-self-end" id="close' + i + '">X</button>'
     );
     $(closeBtn).click(function (event) {
       savedColleges = savedColleges.concat(JSON.parse(localStorage.getItem('colleges')));
