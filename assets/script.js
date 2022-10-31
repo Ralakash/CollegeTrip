@@ -45,28 +45,24 @@ const schoolCard = async (resultsInfo) => {
       // SAM 2: you can also edit these classes on line 41 and 42 to edit to get the buttons in line.
       // changed style="margin : 0.5rem 0rem;" to mt-2 to follow bootstrap formatting - Sam
       $('#containerEL').append(
-        '<div class="card col-8 row container-fluid d-flex flex-row mt-2" id="card' +
-          i +
-          '"></div>'
+        '<div class="card col-8 row container-fluid d-flex flex-row mt-2" id="card' + i + '"></div>'
       );
       $(cardID[i]).append('<div class="card-body col-8 container-fluid" id="card-body' + i + '"></div>');
       $(cardBodyID[i]).html(
         'College name: ' +
           schoolInfo.name +
-          ',    City: ' +
+          '&emsp;  &emsp;  City: ' +
           schoolInfo.city +
-          '<br/> School URL: ' +
+          '<br/> School URL: <a href="' +
           schoolInfo.school_url +
-          ',    Temperature(F): ' +
+          '"target="_blank">' +
+          schoolInfo.school_url +
+          '</a> &emsp;  &emsp;  Temperature(F): ' +
           weather1 +
           '°'
       );
       // creates a button element that is used to save data to local storage.
-      let button = $(
-        '<button type="button" class="btn btn-secondary col-2 my-2" id=saveButton' +
-          i +
-          '>Save</button>'
-      );
+      let button = $('<button type="button" class="btn btn-secondary col-2 my-2" id=saveButton' + i + '>Save</button>');
       $(cardID[i]).append(button);
       let schoolObject = {
         name: schoolInfo.name,
@@ -118,7 +114,16 @@ const writeToSave = () => {
     });
     $(savedID[i]).append(closeBtn);
     $(savedID[i]).append('<div class="card-body col-10" id="saved-body' + i + '"></div>');
-    $(savedBodyID[i]).html(savedColleges[i].name + '<br/> ' + savedColleges[i].temp + '°');
+    $(savedBodyID[i]).html(
+      '<a href="' +
+        savedColleges[i].url +
+        '" target="_blank">' +
+        savedColleges[i].name +
+        '</a><br/> ' +
+        savedColleges[i].temp +
+        '°'
+    );
+    console.log(savedColleges[i]);
   }
   savedColleges = [];
 };

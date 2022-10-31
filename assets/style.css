@@ -31,7 +31,7 @@ main {
   box-shadow: 5px 5px 10px;
 }
 
-.sidebar a {
+/* .sidebar a {
   display: block;
   color: black;
   padding: 16px;
@@ -46,7 +46,7 @@ main {
 .sidebar a:hover:not(.active) {
   background-color: #555;
   color: white;
-}
+} */
 
 div.content {
   margin-left: 200px;
