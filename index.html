@@ -27,7 +27,7 @@
   you cant get that to do what you want then change things in style.css. Try if you can mainly making changes to the classes only on the HTML and the JS. 
   have andrew help on this if you hear from him. -->
   <body>
-    <header class="container row g-3 align-items-center p-2 justify-content-center m-0">
+    <header class="container-fluid row g-3 m-0">
       <h1 class="col-12 text-center">College Trip Planner</h1>
       <div class="col-2"></div>
       <form class="container col-8">
@@ -58,16 +58,17 @@
         </div>
       </form>
     </header>
-    <main class="row">
+    <main class="row container-fluid">
       <div
-        class="sidebar container col-3"
+        class="sidebar container-fluid col-5 overflow-auto"
         id="sideBar"
       ></div>
-
-      <div
-        class="content container col row"
-        id="containerEL"
-      ></div>
+      <div class="d-flex justify-content-center">
+        <div
+          class="content container-fluid col row"
+          id="containerEL"
+        ></div>
+      </div>
     </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

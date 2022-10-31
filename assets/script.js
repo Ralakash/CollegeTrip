@@ -44,30 +44,34 @@ const schoolCard = async (resultsInfo) => {
       weather1 = weatherData.list[4].main.temp;
       // SAM 2: you can also edit these classes on line 41 and 42 to edit to get the buttons in line.
       // I added style="margin : 0.5rem 0rem;" to now line 42 to give space on top and bottom of the cards, will be doing the same to the buttons. - Sam
-      $('#containerEL').append('<div class="card col-8" style="margin : 0.5rem 0rem;" id="card' + i + '"></div>');
-      $(cardID[i]).append('<div class="card-body" id="card-body' + i + '"></div>');
+      $('#containerEL').append(
+        '<div class="card col-8 row container-fluid d-flex flex-row" style="margin : 0.5rem 0rem;" id="card' +
+          i +
+          '"></div>'
+      );
+      $(cardID[i]).append('<div class="card-body col-8 container-fluid" id="card-body' + i + '"></div>');
       $(cardBodyID[i]).html(
         'College name: ' +
           schoolInfo.name +
-          ', City: ' +
+          ',    City: ' +
           schoolInfo.city +
           '<br/> School URL: ' +
           schoolInfo.school_url +
-          ', Temperature(F): ' +
+          ',    Temperature(F): ' +
           weather1 +
           '°'
       );
       // creates a button element that is used to save data to local storage.
       let button = $(
-        '<button type="button" class="btn btn-info col" style="margin : 0.5rem 0rem;" id=saveButton' +
+        '<button type="button" class="btn btn-secondary col-2" style="margin : 0.5rem 0rem;" id=saveButton' +
           i +
           '>Save</button>'
       );
-      $('#containerEL').append(button);
+      $(cardID[i]).append(button);
       let schoolObject = {
         name: schoolInfo.name,
         city: schoolInfo.city,
-        url: schoolInfo.url,
+        url: schoolInfo.school_url,
         temp: weather1,
       };
       // creates a sidebar that lists saved colleges, on a click function.
@@ -102,10 +106,19 @@ const writeToSave = () => {
     savedBodyID[i] = '#saved-body' + i;
     // SAM or ERIC: Please work on using the classes and bootstrap 5 to get the cards here to look better. I will rearrange what data is being fed into them later
     //              so just focus on ensuring whatever data inside of them is able to be seen appropriately.
-    $('#sideBar').append('<div class="card col-9" style="margin : 0.5rem 0rem;" id="saved' + i + '"></div>');
-    $(savedID[i]).append('<div class="card-body" id="saved-body' + i + '"></div>');
+    $('#sideBar').append('<div class="card col-9 row" style="margin : 0.5rem 0rem;" id="saved' + i + '"></div>');
+    let closeBtn = $(
+      '<button type="button" class="btn btn-outline-danger btn-sm col-2" id="close' + i + '">X</button>'
+    );
+    $(closeBtn).click(function (event) {
+      savedColleges = savedColleges.concat(JSON.parse(localStorage.getItem('colleges')));
+      savedColleges.splice(i, 1);
+      localStorage.setItem('colleges', JSON.stringify(savedColleges));
+      writeToSave();
+    });
+    $(savedID[i]).append(closeBtn);
+    $(savedID[i]).append('<div class="card-body col-10" id="saved-body' + i + '"></div>');
     $(savedBodyID[i]).html(savedColleges[i].name + '<br/> ' + savedColleges[i].temp + '°');
-    console.log(savedColleges);
   }
   savedColleges = [];
 };
