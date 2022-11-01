@@ -36,6 +36,9 @@ const schoolCard = async (resultsInfo) => {
   for (let i = 0; i < resultsInfo.length; i++) {
     let schoolInfo = resultsInfo[i].school;
     let city = schoolInfo.city;
+    if (!schoolInfo.school_url.startsWith('https://') && schoolInfo.school_url != '') {
+      schoolInfo.school_url = 'https://' + schoolInfo.school_url;
+    }
     cardID[i] = '#card' + i;
     cardBodyID[i] = '#card-body' + i;
     buttonID[i] = '#saveButton' + i;
@@ -61,6 +64,7 @@ const schoolCard = async (resultsInfo) => {
           weather1 +
           '°'
       );
+      console.log(schoolInfo.school_url);
       // creates a button element that is used to save data to local storage.
       let button = $('<button type="button" class="btn btn-secondary col-2 my-2" id=saveButton' + i + '>Save</button>');
       $(cardID[i]).append(button);
